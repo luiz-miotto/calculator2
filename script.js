@@ -51,59 +51,69 @@ function produceDisplayValue(keyValue){
 
 var equal = document.getElementById("equals");
 equal.addEventListener("click", () => {
-
+    doMath();
     console.log("is equals working");
     console.log(secondDisplayValue);
-    if (plusCounter == 1){
-   addedValue = sum(displayValue,secondDisplayValue);
-   displayValue = addedValue
-   secondDisplayValue = "";
-   inputDisplay.innerText = displayValue;
-   --plusCounter;
-    } else if (minusCounter == 1){
-        subtractedValue = subtract(displayValue,secondDisplayValue);
-        displayValue = subtractedValue
-        secondDisplayValue = "";
-        inputDisplay.innerText = subtractedValue;
-        --minusCounter;
-    } else if (multiplyCounter == 1){
-         multipliedValue = multiply(displayValue,secondDisplayValue);
-         displayValue = multipliedValue
-        secondDisplayValue = "";
-        inputDisplay.innerText = multipliedValue;
-        --multiplyCounter;
-    } else if (divideCounter == 1){
-        dividedValue = divide(displayValue,secondDisplayValue);
-        displayValue = dividedValue
-        secondDisplayValue = "";
-       inputDisplay.innerText = dividedValue;
-       --divideCounter;
-   }
+    
 });
+
+function doMath(){
+    if (plusCounter == 1){
+        addedValue = sum(displayValue,secondDisplayValue);
+        displayValue = addedValue
+        secondDisplayValue = "";
+        inputDisplay.innerText = displayValue;
+        --plusCounter;
+         } else if (minusCounter == 1){
+             subtractedValue = subtract(displayValue,secondDisplayValue);
+             displayValue = subtractedValue
+             secondDisplayValue = "";
+             inputDisplay.innerText = subtractedValue;
+             --minusCounter;
+         } else if (multiplyCounter == 1){
+              multipliedValue = multiply(displayValue,secondDisplayValue);
+              displayValue = multipliedValue
+             secondDisplayValue = "";
+             inputDisplay.innerText = multipliedValue;
+             --multiplyCounter;
+         } else if (divideCounter == 1){
+             dividedValue = divide(displayValue,secondDisplayValue);
+             displayValue = dividedValue
+             secondDisplayValue = "";
+            inputDisplay.innerText = dividedValue;
+            --divideCounter;
+        };
+};
 
 var plus = document.getElementById("plus");
 plus.addEventListener("click", () =>{
-    
+    if (minusCounter == 1 || multiplyCounter == 1 || divideCounter == 1){
+        doMath();
+      }
     ++counter;
-    
     ++plusCounter;
-    
     console.log(`This is the value of ${counter}`);
 });
 
 
 var minus = document.getElementById("minus");
 minus.addEventListener("click", () =>{
-    
+    if (plusCounter == 1 || multiplyCounter == 1 || divideCounter == 1){
+        doMath();
+      }
     ++counter;
     ++minusCounter;
+
+
     console.log(`This is the value of ${counter}`);
 });
 
 
 var multiplyButton = document.getElementById("multiply");
 multiplyButton.addEventListener("click", () =>{
-    
+    if (plusCounter == 1 || multiplyCounter == 1 || divideCounter == 1){
+        doMath();
+      }
     ++counter;
     ++multiplyCounter;
     console.log(`This is the value of ${counter}`);
@@ -111,7 +121,9 @@ multiplyButton.addEventListener("click", () =>{
 
 var divideButton = document.getElementById("divide");
 divideButton.addEventListener("click", () =>{
-    
+    if (plusCounter == 1 || multiplyCounter == 1 || divideCounter == 1){
+        doMath();
+      }
     ++counter;
     ++divideCounter;
     console.log(`This is the value of ${counter}`);
